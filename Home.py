@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import numpy as np
-from flipside import Flipside
 st.set_page_config(layout="wide")
 
 col1, col2, col3 = st.columns([1,3,1])
