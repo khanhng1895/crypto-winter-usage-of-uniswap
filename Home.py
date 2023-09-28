@@ -224,7 +224,16 @@ with col14:
   st.plotly_chart(fig14, use_container_width=True)
 
 with col15:
-  st.write("It can be seen that there are more active liquidity providers after the bear market than there are inactive liquidity providers.")
+  df14 = pd.read_csv('Charts/5c_Weekly_Liquidity_Providers_Count_on_Uniswap.csv')
+  
+  fig14 = px.bar(df14, x="TIMESPAN", y="LPS", title="5c. Weekly Liquidity Providers Count on Uniswap", height=500)
+  fig14.update_layout(hovermode="x unified")
+  # Add Scatter plot
+  fig14.add_scatter(x=df14['TIMESPAN'], y=df14['POOLS'], name="POOL_COUNT", line_color="red")
+  st.plotly_chart(fig14, use_container_width=True)
+  
+  
+st.write(":blue[It can be seen that there are more active liquidity providers after the bear market than there are inactive liquidity providers. And daily number of liquidity providers can be seen to clearly have declined in early weeks, but aan irregular pattern is later seen with a peak value of about 8.8k on July 2023].")
 
 st.markdown("""The decline in liquidity can be attributed to several factors, such as:
 
@@ -267,3 +276,7 @@ cola, colb, colc, = st.columns([2,1,2])
 with colb:
   st.image("https://pbs.twimg.com/profile_images/1658503811189850112/yQRHOhdB_400x400.jpg", "Data By: Flipside Crypto", width=200,)
 
+
+         
+
+         
