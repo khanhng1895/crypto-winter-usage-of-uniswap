@@ -65,7 +65,16 @@ with col2:
   
 st.subheader(":red[USERS STATS]")
 
-st.write("The number of users on Uniswap is the total number of unique addresses that have interacted with the Uniswap smart contracts in a given period. It reflects the size and diversity of the user base. The users will be categorized into new users and active users stats.")
+st.write("It is evident that the current bear market is adversely affecting the user engagement on the crypto space")
+
+st.markdown("""The decline in the number of users can be explained by similar factors as the decline in trading volume, such as:
+
+- The loss of interest and confidence in crypto, as many users may have exited the market or moved to other platforms or assets.
+- The high gas fees on Ethereum, which may deter new or casual users from using Uniswap, especially for small or frequent trades.
+- The competition and innovation in the DEX space, which may attract users to try out other platforms or features that offer better performance, lower fees, or more options.
+- The regulatory pressure and uncertainty, which may discourage users from using Uniswap, especially in jurisdictions where crypto is banned or restricted.""")
+
+st.write("The number of users on Uniswap is the total number of unique addresses that have interacted with the Uniswap smart contracts in a given period. It reflects the size and diversity of the user base. :red[The users will be categorized into new users and active users stats].")
 
 col0, col00, col000 = st.columns([1.3,1,1])
 
@@ -88,7 +97,7 @@ with col4:
   fig_4.update_layout(hovermode="x unified")
   st.plotly_chart(fig_4, use_container_width=True)
 
-st.write("As we can see, the number of users on Uniswap also reached an all-time high of 1.7 million in May 2022, but then declined steadily, reaching a low of 0.6 million in July 2023, a drop of 64.7%. The number of users slightly increased to 0.7 million in August 2023, but it is still far below the previous highs.")
+st.write("As evident, the number of new users on Uniswap reached its peak at 206.67k in May 2021 before the bear market. It subsequently declined and maintained a consistent range until March 2023. During that time, a rapid upward trend emerged, culminating in an all-time high of 206.72k new users in May 2023. This achievement is particularly remarkable considering the bear market conditions. However, following this peak, a continuous downward trend ensued. Ethereum remains at the forefront among blockchain platforms.")
 
 col0, col00, col000 = st.columns([1.3,1,1])
 
@@ -111,7 +120,9 @@ with col5:
   fig_5.update_layout(hovermode="x unified")
   st.plotly_chart(fig_5, use_container_width=True)
 
-st.write("As we can see, the number of users on Uniswap also reached an all-time high of 1.7 million in May 2022, but then declined steadily, reaching a low of 0.6 million in July 2023, a drop of 64.7%. The number of users slightly increased to 0.7 million in August 2023, but it is still far below the previous highs.")
+st.write("Regarding weekly active users, there has been a consistent upward trend since the conclusion of the bear market. This trend reached its zenith with 36.36k users as of May 1, 2023, and it continues to gain momentum. As anticipated, Ethereum boasts the highest number of weekly users, closely followed by the Polygon chain.")
+
+st.write("This surge in user activity can be attributed to the current phenomenon in the cryptocurrency space known as airdrop farming. Many newcomers to the crypto world, as well as seasoned veterans, have joined the ecosystem to participate in airdrops promised by numerous newly launched platforms. Additionally, May aligns with the two-year anniversary of the V3 launch, during which some enticing incentives may have been offered.")
 
 col6, col7, col8 = st.columns([1,1,1])
 
@@ -122,12 +133,16 @@ with col6:
   fig_6.update_layout(hovermode="x unified")
   st.plotly_chart(fig_6, use_container_width=True)
 
+  st.write("It can be seen that there were more active users on Uniswap after the bear market than before the bear market with values of 29.28k after bear and 16.97k before the bear market.")
+
 with col7:
   df7 = pd.read_csv('Charts/4a_Active_and_Inactive_Users_of_Uniswap_Before_&_After_Bear_Market.csv')
   
   fig_7 = px.bar(df7, x="MARKET_STAT", y="ACTIVE_USERS", color="MARKET_STAT", title="4a. Active and Inactive Users of Uniswap Before & After Bear Market ", height=500)
   fig_7.update_layout(hovermode="x unified")
   st.plotly_chart(fig_7, use_container_width=True)
+
+  st.write("Here, it can be seen that a lot of uniswap users became inactive after the bear market with values of 13.91k inactive users to 3055 active users.")
 
 with col8:
   df8 = pd.read_csv('Charts/4b_Active_Users_That_Have_Stopped_Using_Uniswap_After_Bear_Market.csv')
@@ -136,16 +151,12 @@ with col8:
   fig_8.update_layout(hovermode="x unified")
   st.plotly_chart(fig_8, use_container_width=True)
 
-st.markdown("""The decline in the number of users can be explained by similar factors as the decline in trading volume, such as:
+  st.write("Looking at the active users generally in the bear market, it can be deducted that a fat portion are not using Uniswap.")
 
-- The loss of interest and confidence in crypto, as many users may have exited the market or moved to other platforms or assets.
-- The high gas fees on Ethereum, which may deter new or casual users from using Uniswap, especially for small or frequent trades.
-- The competition and innovation in the DEX space, which may attract users to try out other platforms or features that offer better performance, lower fees, or more options.
-- The regulatory pressure and uncertainty, which may discourage users from using Uniswap, especially in jurisdictions where crypto is banned or restricted.""")
 
-st.subheader("LIQUIDITY")
+st.subheader(":red[LIQUIDITY]")
 
-st.write("The liquidity on Uniswap is the total amount of tokens locked in the Uniswap liquidity pools, which enable users to swap tokens on the platform. It reflects the depth and availability of the market. The chart below shows the monthly liquidity on Uniswap from January 2022 to August 2023.")
+st.write("The liquidity on Uniswap is the total amount of tokens locked in the Uniswap liquidity pools, which enable users to swap tokens on the platform. It reflects the depth and availability of the market. The charts below shows the weekly liquidity stats. :red[Data was only available for Ethereum chain and only the uniswapV3 data was analyzed]")
 
 col9, col10 = st.columns([2,1])
 
@@ -164,6 +175,8 @@ with col10:
   fig9a = px.line(df9, x="TIMESPAN", y="NET_USD_LIQ", title="5. Weekly Net Liquidity on Uniswap", height=500)
   fig9a.update_layout(hovermode="x unified")
   st.plotly_chart(fig9a, use_container_width=True)
+
+st.write("From the weekly liquidity added and removed from pools, very high liquidity provisions were made weekly towards the third quarter of 2022 by LPs. After which, there is a strong downtrend in the liquidity provision and the same can be said for liquidity renoval. A cumulative of close to 5billion dollars is seen to be locked into liquidity pools on uniswap.")
 
 col11, col12, col13 = st.columns([1,1,1])
 
@@ -188,12 +201,14 @@ with col13:
   fig13.update_layout(hovermode="x unified")
   st.plotly_chart(fig13, use_container_width=True)
 
-st.write("As we can see, the liquidity on Uniswap reached an all-time high of $8.3 billion in May 2022, but then declined sharply, reaching a low of $1.4 billion in July 2023, a plunge of 83.1%. The liquidity slightly recovered to $1.7 billion in August 2023, but it is still far below the previous highs.")
+st.write("Token0 and token1 are the two tokens that combine together to form the available liquidity in each pool on Uniswap. It can also be seen that the deposit and withdrawal of these tokens follow a similar pattern as their combined liquidity. :red[One quick deduction that can be made is that the amount of liquidity being provided is reducing with time.]")
 
 col0, col00, col000 = st.columns([1,1.5,1])
 
 with col00:
   st.subheader(":green[Top 100 Liquidity Providers on Uniswap]")
+
+st.write("The table below contains the top hundred liquidity providers on Uniswap and their current liquidity stats. 0xabc9bcc4db37b61bf3f6e5cef9e0ec06c1dcabcd is seen to be the top based on its net liquidity provided, that is, its balance in the liquity pool.")
 
 df14 = pd.read_csv('Charts/5a_Top_100_Liquidity_Providers_on_Uniswap.csv')
 
@@ -208,6 +223,9 @@ with col14:
   fig14.update_layout(hovermode="x unified")
   st.plotly_chart(fig14, use_container_width=True)
 
+with col15:
+  st.write("It can be seen that there are more active liquidity providers after the bear market than there are inactive liquidity providers.")
+
 st.markdown("""The decline in liquidity can be attributed to several factors, such as:
 
 - The decrease in the value of the tokens locked in the liquidity pools, as the prices of most cryptocurrencies have fallen significantly since May 2022.
@@ -217,9 +235,9 @@ st.markdown("""The decline in liquidity can be attributed to several factors, su
 
 st.header("CONCLUSION")
 
-st.write("In conclusion, the crypto winter has had a significant impact on the usage of Uniswap, as the trading volume, number of users, and liquidity have all declined substantially since the peak in May 2022. This decline can be explained by various factors, such as the overall market downturn, the high gas fees on Ethereum, the competition and innovation in the DEX space, and the regulatory pressure and uncertainty.")
+st.write("In conclusion, the crypto winter has had a significant impact on the usage of Uniswap, as the trading volume and liquidity have both declined substantially since the peak in May 2022. This decline can be explained by various factors, such as the overall market downturn, the high gas fees on Ethereum, the competition and innovation in the DEX space, and the regulatory pressure and uncertainty. The number of new and active users is seen to be on the rise and is seen to have peaked in recent days, indicating that users are loosing faith in the crypto space and are thereby investing lesser in the space than previous times.")
 
-st.write("However, despite the challenges and difficulties, Uniswap remains one of the most popular and widely used DEXs in the crypto space, with a loyal and diverse user base, a strong and innovative team, and a robust and flexible protocol. Uniswap has also been constantly improving and evolving, such as launching Uniswap V3 in May 2022, which introduced new features and benefits for users and liquidity providers, such as concentrated liquidity, multiple fee tiers, and improved capital efficiency.")
+st.write("However, despite the challenges and difficulties, Uniswap remains one of the most popular and widely used DEXs in the crypto space, with a loyal and diverse user base, a strong and innovative team, and a robust and flexible protocol. Uniswap has also been constantly improving and evolving, such as launching Uniswap V3 in May 2021, which introduced new features and benefits for users and liquidity providers, such as concentrated liquidity, multiple fee tiers, and improved capital efficiency.")
 
 st.write("Therefore, it is possible that Uniswap will recover and regain its momentum once the market conditions improve and the demand for decentralized and permissionless trading increases. Uniswap may also benefit from the upcoming developments and trends in the crypto space, such as the Ethereum 2.0 upgrade, which aims to reduce gas fees and increase scalability, the growth of layer 2 solutions, which enable faster and cheaper transactions, and the adoption of cross-chain and multichain interoperability, which enable more access and liquidity for users and assets.")
 
@@ -245,9 +263,7 @@ st.markdown("""
 8. [Big Eyes Coins And Uniswap Look To Give Some Advances Over The Bear Market.](https://www.analyticsinsight.net/big-eyes-coins-and-uniswap-look-to-give-some-advances-over-the-bear-market/).
 """)
 
+cola, colb, colc, = st.columns([2,1,2])
+with colb:
+  st.image("https://pbs.twimg.com/profile_images/1658503811189850112/yQRHOhdB_400x400.jpg", "Data By: Flipside Crypto", width=200,)
 
-
-
-         
-
-         
