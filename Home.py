@@ -16,6 +16,8 @@ st.header(":blue[INTRODUCTION]")
 
 st.write("Uniswap is a decentralized exchange (DEX) that allows users to swap any ERC-20 tokens without intermediaries or fees. It also enables users to provide liquidity to the platform and earn a share of the trading fees. Uniswap is one of the most popular and widely used DEXs in the crypto space, with over $1.7 billion in total value locked (TVL) as of September 21, 2023")
 
+st.markdown("##### :red[The data are all gotten from [Flipsidecrypto](flipsidecrypto.xyz) and a public dashboard containing daily updated versions of all charts found in this analysis can be found is this [dashboard](https://flipsidecrypto.xyz/zackmendel/2023-09-27-12-22-am-RrJKKp). Feel free to drop a like].")
+
 st.subheader(":red[TRADING VOLUME]")
 
 st.write(":blue[The trading volume on Uniswap is the total amount of tokens swapped on the platform in a given period]. It reflects the level of activity and demand for the service. The chart below shows the weekly trading volume on Uniswap till September 2023.")
@@ -103,6 +105,69 @@ col0, col00, col000 = st.columns([1.3,1,1])
 
 with col00:
   st.subheader(":blue[ACTIVE USERS STATS]")
+
+with st.expander("REASONING"):
+  st.header("For Weekly Active Users")
+  st.subheader(":red[Active wallets are those that transacted for at least 5days out of the 7days in a week].")
+  
+  code = '''
+  --full code is available on [dashboard](https://flipsidecrypto.xyz/zackmendel/2023-09-27-12-22-am-RrJKKp)
+  ...
+  active_users AS (
+SELECT
+  date_trunc (week, block_timestamp) AS dates,
+  users AS active_user,
+  COUNT (DISTINCT block_timestamp::date) AS Days_Count
+FROM all_users
+GROUP BY 1,2
+HAVING days_count >= 5
+)
+  '''
+  st.code(code, language="sql")
+  
+  st.header("For Total Active Users(Before & After Bear)")
+  st.subheader(":red[Active wallets are considered to have transacted for at least half the number of weeks in each case{i.e Before bear = 42weeks(Half of 84weeks in total) and After bear = 44weeks(Half of 88weeks in total)}]")
+  
+  code = '''
+  --full code is available on [dashboard](https://flipsidecrypto.xyz/zackmendel/2023-09-27-12-22-am-RrJKKp)
+  ...
+  WITH all_users AS (
+before_bear AS (
+SELECT
+  DISTINCT users AS user_before_bear,
+  COUNT (DISTINCT date_trunc (week, block_timestamp)) AS weeks
+FROM all_users
+  WHERE block_timestamp::date < '2022-01-01'
+GROUP BY 1
+HAVING weeks >= 42
+),
+
+after_bear AS (
+SELECT
+  DISTINCT users AS user_after_bear,
+  COUNT (DISTINCT date_trunc (week, block_timestamp)) AS weeks
+FROM all_users
+  WHERE block_timestamp::date >= '2022-01-01'
+GROUP BY 1
+HAVING weeks >= 44
+)
+
+SELECT
+  'Before Bear' AS market_stat,
+  COUNT (DISTINCT user_before_bear) AS active_users
+FROM before_bear
+GROUP BY 1
+
+UNION ALL
+
+SELECT
+  'After Bear' AS market_stat,
+  COUNT (DISTINCT user_after_bear) AS active_users
+FROM after_bear
+GROUP BY 1
+'''
+  st.code(code, language="sql")
+
 
 col4, col5 = st.columns([1,1])
 
